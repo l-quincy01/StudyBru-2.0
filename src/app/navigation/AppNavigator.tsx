@@ -1,10 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../login/LoginScreen";
+
 import { useAuth } from "@/src/context/AuthContext";
-import HomeScreen from "../home/HomeScreen";
+
 import { Button } from "react-native";
+
+import TabNavigator from "./TabNavigator";
+import LoginScreen from "../screens/login/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,8 +19,8 @@ export default function AppNavigator() {
       <Stack.Navigator>
         {authState?.authenticated ? (
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
+            name="TabNavigator"
+            component={TabNavigator}
             options={{
               headerShown: false,
               // headerRight: () => <Button onPress={onLogout} title="Sign Out" />,

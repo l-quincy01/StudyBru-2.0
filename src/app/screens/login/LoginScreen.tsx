@@ -9,11 +9,15 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { ThemedView } from "@/src/components/ThemedView";
-import { ThemedText } from "@/src/components/ThemedText";
+// import { ThemedView } from "@/src/components/ThemedView";
+// import { ThemedText } from "@/src/components/ThemedText";
+// import { API_URL, useAuth } from "@/src/context/AuthContext";
+// import Layout from "@/src/components/Layout/Layout";
+import axios from "axios";
 import { API_URL, useAuth } from "@/src/context/AuthContext";
 import Layout from "@/src/components/Layout/Layout";
-import axios from "axios";
+import { ThemedView } from "@/src/components/ThemedView";
+import { ThemedText } from "@/src/components/ThemedText";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -60,7 +64,7 @@ export default function LoginScreen() {
     <Layout>
       <View className="flex items-center justify-center p-10">
         <Image
-          source={require("../../assets/images/login/banner.png")}
+          source={require("../../../assets/images/login/banner.png")}
           style={{ width: 150, height: 150, borderRadius: 90 }}
         />
       </View>
