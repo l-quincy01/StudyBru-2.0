@@ -12,12 +12,13 @@ import * as SecureStore from "expo-secure-store";
 interface AuthProps {
   authState?: { token: string | null; authenticated: boolean | null };
   onRegister?: (email: string, password: string) => Promise<any>;
-  onLogin?: (email: string, password: string) => Promise<any>;
+  //onLogin?: (email: string, password: string) => Promise<any>;
+  onLogin?: () => Promise<any>;
   onLogout?: () => Promise<any>;
 }
 
-const TOKEN_KEY = "MY-JWT";
-export const API_URL = "https://api.developbetterapps.com";
+const TOKEN_KEY = "my-jwt";
+export const API_URL = "https://api.developbetterapps.com/users";
 const AuthContext = createContext<AuthProps>({});
 
 export const useAuth = () => {
@@ -56,25 +57,33 @@ export const AuthProvider = ({ children }: any) => {
       return { error: true };
     }
   };
-  const login = async (email: string, password: string) => {
-    try {
-      const result = await axios.post(`${API_URL}/auth`, { email, password });
+  // const login = async (email: string, password: string) => {
+  //   try {
+  //     const result = await axios.post(`${API_URL}/auth`, { email, password });
 
-      setAuthState({
-        token: result.data.token,
-        authenticated: true,
-      });
+  //     setAuthState({
+  //       token: result.data.token,
+  //       authenticated: true,
+  //     });
 
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${result.data.token}`;
+  //     axios.defaults.headers.common[
+  //       "Authorization"
+  //     ] = `Bearer ${result.data.token}`;
 
-      await SecureStore.setItemAsync(TOKEN_KEY, result.data.token);
+  //     await SecureStore.setItemAsync(TOKEN_KEY, result.data.token);
 
-      return result;
-    } catch (e) {
-      return { error: true };
-    }
+  //     return result;
+  //   } catch (e) {
+  //     return { error: true, msg: (e as any).response.data.msg };
+  //   }
+  // };
+
+  // Bypass for now
+  const login = () => {
+    setAuthState({
+      token: "Bypass Token",
+      authenticated: true,
+    });
   };
 
   const logout = async () => {

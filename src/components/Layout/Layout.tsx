@@ -2,8 +2,17 @@
  * General layout for all screens
  */
 import React, { ReactNode } from "react";
-import { StyleSheet, SafeAreaView, StatusBar, Platform } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { ThemedView } from "@/src/components/ThemedView";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,7 +21,14 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>{children}</SafeAreaView>
+      <KeyboardAwareScrollView
+        // behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <SafeAreaView style={styles.safeArea}>{children}</SafeAreaView>
+        </TouchableWithoutFeedback>
+      </KeyboardAwareScrollView>
     </ThemedView>
   );
 };
@@ -20,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 18,
   },
   safeArea: {
     flex: 1,

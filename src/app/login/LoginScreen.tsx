@@ -1,30 +1,51 @@
 import {
+  Image,
   Platform,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemedView } from "@/src/components/ThemedView";
 import { ThemedText } from "@/src/components/ThemedText";
-import { useAuth } from "@/src/context/AuthContext";
+import { API_URL, useAuth } from "@/src/context/AuthContext";
 import Layout from "@/src/components/Layout/Layout";
+import axios from "axios";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, onRegister } = useAuth();
+  //const {authState, setAuthState} = useAuth();
 
-  const login = async () => {
-    const result = await onLogin!(email, password);
+  useEffect(() => {
+    const testCall = async () => {
+      const result = await axios.get(`${API_URL}/users]`);
 
-    if (result && result.error) {
-      alert(result.msg);
-    }
+      console.log(result);
+    };
+    testCall();
+  }, []);
+
+  //Still working on Login
+
+  // const login = async () => {
+  //   const result = await onLogin!(email, password);
+
+  //   if (result && result.error) {
+  //     alert(result.msg);
+  //   }
+  // };
+
+  // Bypass for now
+
+  const login = () => {
+    onLogin!();
   };
+
   const register = async () => {
     const result = await onRegister!(email, password);
 
@@ -37,17 +58,65 @@ export default function LoginScreen() {
 
   return (
     <Layout>
+      <View className="flex items-center justify-center p-10">
+        <Image
+          source={require("../../assets/images/login/banner.png")}
+          style={{ width: 150, height: 150, borderRadius: 90 }}
+        />
+      </View>
       <ThemedView className=" flex flex-col gap-y-5 ">
-        <ThemedText type="title">
-          <Text className=" text-4xl font-bold">Get Started </Text>
-        </ThemedText>
-        <ThemedView className=" flex flex-col gap-y-1 ">
-          <ThemedText>Email</ThemedText>
-          <TextInput
-            className="p-3 "
-            onChangeText={(text: string) => setEmail(text)}
-            value={email}
-          />
+        <View className=" flex flex-col justify-center items-center gap-y-5">
+          <ThemedText type="title">Get Started</ThemedText>
+          <ThemedText type="defaultSemiBold" className="text-center">
+            By signing up you accept StudyBru's Terms of service and privacy
+            policy.
+          </ThemedText>
+        </View>
+
+        <ThemedView className=" flex flex-col gap-y-6 ">
+          <ThemedView>
+            <ThemedText>Email</ThemedText>
+            <TextInput
+              className=" pb-2  border-b-2 mb-4"
+              onChangeText={(text: string) => setEmail(text)}
+              value={email}
+            />
+          </ThemedView>
+
+          <ThemedView>
+            <ThemedText> Passoword</ThemedText>
+            <TextInput
+              className="pb-2  border-b-2 mb-4"
+              secureTextEntry={true}
+              onChangeText={(text: string) => setPassword(text)}
+              value={password}
+            />
+          </ThemedView>
+          {/* <ThemedView>
+            <ThemedText>Verify Password</ThemedText>
+            <TextInput
+              className="pb-2  border-b-2 mb-4"
+              secureTextEntry={true}
+              onChangeText={(text: string) => setPassword(text)}
+              value={password}
+            />
+          </ThemedView> */}
+        </ThemedView>
+        <TouchableOpacity
+          onPress={login}
+          className="py-5 bg-violet-600 rounded-2xl items-center justify-center flex "
+        >
+          <Text className="text-white font-semibold text-center">Sign Up</Text>
+        </TouchableOpacity>
+
+        <ThemedView className="flex flex-row gap-x-3 items-center justify-center">
+          <ThemedText type="defaultSemiBold">Have an account?</ThemedText>
+          <TouchableOpacity onPress={login}>
+            {" "}
+            <Text className=" text-blue-600 text-xl font-semibold">
+              Log in.
+            </Text>{" "}
+          </TouchableOpacity>
         </ThemedView>
       </ThemedView>
     </Layout>

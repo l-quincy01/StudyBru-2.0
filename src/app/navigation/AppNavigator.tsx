@@ -19,8 +19,8 @@ export default function AppNavigator() {
             name="Home"
             component={HomeScreen}
             options={{
-              // headerShown: false,
-              headerRight: () => <Button onPress={onLogout} title="Sign Out" />,
+              headerShown: false,
+              // headerRight: () => <Button onPress={onLogout} title="Sign Out" />,
             }} // Customize header options here
           />
         ) : (
