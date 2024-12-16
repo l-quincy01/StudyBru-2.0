@@ -18,6 +18,8 @@ import { API_URL, useAuth } from "@/src/context/AuthContext";
 import Layout from "@/src/components/Layout/Layout";
 import { ThemedView } from "@/src/components/ThemedView";
 import { ThemedText } from "@/src/components/ThemedText";
+import WrapperLayout from "~/src/components/Layout/Wrapper_Layout";
+import SeparatorComp from "~/src/components/_Shared/SeparatorComp";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -61,42 +63,45 @@ export default function LoginScreen() {
   };
 
   return (
-    <Layout>
-      <View className="flex items-center justify-center p-10">
-        <Image
-          source={require("../../../assets/images/login/banner.png")}
-          style={{ width: 150, height: 150, borderRadius: 90 }}
-        />
-      </View>
-      <ThemedView className=" flex flex-col gap-y-5 ">
-        <View className=" flex flex-col justify-center items-center gap-y-5">
-          <ThemedText type="title">Get Started</ThemedText>
-          <ThemedText type="defaultSemiBold" className="text-center">
-            By signing up you accept StudyBru's Terms of service and privacy
-            policy.
-          </ThemedText>
+    <WrapperLayout>
+      <Layout>
+        <View className="flex items-center justify-center p-10">
+          <Image
+            source={require("../../../assets/images/login/banner.png")}
+            style={{ width: 150, height: 150, borderRadius: 90 }}
+          />
         </View>
+        <ThemedView className=" flex flex-col gap-y-5 ">
+          <View className=" flex flex-col justify-center items-center gap-y-5">
+            <ThemedText type="title">Get Started</ThemedText>
+            <ThemedText type="defaultSemiBold" className="text-center">
+              By signing up you accept StudyBru's Terms of service and privacy
+              policy.
+            </ThemedText>
+          </View>
 
-        <ThemedView className=" flex flex-col gap-y-6 ">
-          <ThemedView>
-            <ThemedText>Email</ThemedText>
-            <TextInput
-              className=" pb-2  border-b-2 mb-4"
-              onChangeText={(text: string) => setEmail(text)}
-              value={email}
-            />
-          </ThemedView>
+          <ThemedView className=" flex flex-col gap-y-6 ">
+            <ThemedView>
+              <ThemedText>Email</ThemedText>
+              <TextInput
+                className=" pb-2  mb-4"
+                onChangeText={(text: string) => setEmail(text)}
+                value={email}
+              />
+              <SeparatorComp />
+            </ThemedView>
 
-          <ThemedView>
-            <ThemedText> Passoword</ThemedText>
-            <TextInput
-              className="pb-2  border-b-2 mb-4"
-              secureTextEntry={true}
-              onChangeText={(text: string) => setPassword(text)}
-              value={password}
-            />
-          </ThemedView>
-          {/* <ThemedView>
+            <ThemedView>
+              <ThemedText> Passoword</ThemedText>
+              <TextInput
+                className="pb-2   mb-4"
+                secureTextEntry={true}
+                onChangeText={(text: string) => setPassword(text)}
+                value={password}
+              />
+              <SeparatorComp />
+            </ThemedView>
+            {/* <ThemedView>
             <ThemedText>Verify Password</ThemedText>
             <TextInput
               className="pb-2  border-b-2 mb-4"
@@ -105,25 +110,28 @@ export default function LoginScreen() {
               value={password}
             />
           </ThemedView> */}
-        </ThemedView>
-        <TouchableOpacity
-          onPress={login}
-          className="py-5 bg-violet-600 rounded-2xl items-center justify-center flex "
-        >
-          <Text className="text-white font-semibold text-center">Sign Up</Text>
-        </TouchableOpacity>
-
-        <ThemedView className="flex flex-row gap-x-3 items-center justify-center">
-          <ThemedText type="defaultSemiBold">Have an account?</ThemedText>
-          <TouchableOpacity onPress={login}>
-            {" "}
-            <Text className=" text-blue-600 text-xl font-semibold">
-              Log in.
-            </Text>{" "}
+          </ThemedView>
+          <TouchableOpacity
+            onPress={login}
+            className="py-5 bg-violet-600 rounded-2xl items-center justify-center flex "
+          >
+            <Text className="text-white font-semibold text-center">
+              Sign Up
+            </Text>
           </TouchableOpacity>
+
+          <ThemedView className="flex flex-row gap-x-3 items-center justify-center">
+            <ThemedText type="defaultSemiBold">Have an account?</ThemedText>
+            <TouchableOpacity onPress={login}>
+              {" "}
+              <Text className=" text-blue-600 text-xl font-semibold">
+                Log in.
+              </Text>{" "}
+            </TouchableOpacity>
+          </ThemedView>
         </ThemedView>
-      </ThemedView>
-    </Layout>
+      </Layout>
+    </WrapperLayout>
   );
 }
 

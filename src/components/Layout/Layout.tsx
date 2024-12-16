@@ -1,6 +1,3 @@
-/**
- * General layout for all screens
- */
 import React, { ReactNode } from "react";
 import {
   StyleSheet,
@@ -10,8 +7,9 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  View,
 } from "react-native";
-import { ThemedView } from "@/src/components/ThemedView";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 interface LayoutProps {
@@ -20,27 +18,27 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <ThemedView style={styles.container}>
-      <KeyboardAwareScrollView
-        // behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <SafeAreaView style={styles.safeArea}>{children}</SafeAreaView>
-        </TouchableWithoutFeedback>
-      </KeyboardAwareScrollView>
-    </ThemedView>
+    <KeyboardAwareScrollView style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          {/* Wrap children in a container */}
+          {children}
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 18,
+
+    backgroundColor: "transparent",
   },
   safeArea: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    marginTop: 16,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 16,
   },
 });
 
