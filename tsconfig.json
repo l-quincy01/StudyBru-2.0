@@ -6,8 +6,8 @@
     "paths": {
       "~/*": ["*"],
       "@/*": ["*"], 
-      "components/*": ["src/components/*"],
-      "lib/*": ["src/lib/*"]
+      "components/*": ["src/app/components/*"],
+      "lib/*": ["src/app/lib/*"]
     }
   },
   "include": [

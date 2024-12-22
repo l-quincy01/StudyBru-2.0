@@ -2,7 +2,7 @@ import { registerRootComponent } from "expo";
 import { PortalHost } from "@rn-primitives/portal";
 
 import AppNavigator from "./navigation/AppNavigator";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 
 import "../../global.css";
 import {

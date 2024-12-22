@@ -12,7 +12,7 @@ import {
   Keyboard,
   View,
 } from "react-native";
-import { ThemedView } from "@/src/components/ThemedView";
+import { ThemedView } from "~/src/app/components/ThemedView";
 
 interface LayoutProps {
   children: ReactNode;
