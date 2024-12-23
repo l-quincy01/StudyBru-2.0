@@ -59,26 +59,6 @@ export const userModules: SubjectModule[] = [
             thumbnailURL: "https://example.com/translators-thumbnail.jpg",
             dateAdded: "2024-12-20",
           },
-          {
-            notesTitle: "Translators",
-            thumbnailURL: "https://example.com/translators-thumbnail.jpg",
-            dateAdded: "2024-12-20",
-          },
-          {
-            notesTitle: "Translators",
-            thumbnailURL: "https://example.com/translators-thumbnail.jpg",
-            dateAdded: "2024-12-20",
-          },
-          {
-            notesTitle: "Translators",
-            thumbnailURL: "https://example.com/translators-thumbnail.jpg",
-            dateAdded: "2024-12-20",
-          },
-          {
-            notesTitle: "Translators",
-            thumbnailURL: "https://example.com/translators-thumbnail.jpg",
-            dateAdded: "2024-12-20",
-          },
           // END OF NOTES BELONGING TO THIS SET
         ],
         // END OF THIS SET
