@@ -20,10 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
-          {/* Wrap children in a container */}
-          {children}
-        </View>
+        <View>{children}</View>
       </TouchableWithoutFeedback>
     </KeyboardAwareScrollView>
   );
@@ -37,8 +34,6 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    marginTop: 16,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 16,
   },
 });
 

@@ -12,20 +12,24 @@ import TextView from "../_Shared/TextView";
 import { Card } from "react-native-paper";
 import Carousel from "react-native-reanimated-carousel";
 
+interface ModuleSetGroup {
+  id: number; // Unique identifier for the module set group
+  sets: ModuleSet[]; // Array of sets within this group
+}
+
+interface ModuleSet {
+  setTitle: string; // Title of the set (e.g., Data Structures)
+  notes: Note[]; // Array of notes under this set
+}
+
+interface Note {
+  notesTitle: string; // Title of the note
+  thumbnailURL: string; // URL for note thumbnail
+  dateAdded: string; // Date the note was added
+}
+
 interface CardsProps {
-  data: subjectModule[];
-}
-
-interface subjectModule {
-  subjectModuleTitle: string;
-  setTitle: string[];
-  notes: notes[];
-}
-
-interface notes {
-  title: string;
-  thumbnailURL: string;
-  dateAdded: string;
+  data: ModuleSet[];
 }
 
 export default function CardsBig({ data }: CardsProps) {
@@ -71,7 +75,7 @@ export default function CardsBig({ data }: CardsProps) {
           style={{ width: "100%" }}
           snapEnabled={true}
           scrollAnimationDuration={250}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <Card
               style={{
                 backgroundColor: theme === "dark" ? "#27272a" : "white",
@@ -89,11 +93,11 @@ export default function CardsBig({ data }: CardsProps) {
             >
               <Card.Content className="flex flex-col gap-y-6 justify-between">
                 <TextView className="text-2xl font-semibold ">
-                  {item.subjectModuleTitle}
+                  {item.setTitle}
                 </TextView>
                 <View>
                   <View className="flex flex-col gap-y-1 grow h-4/6">
-                    {item.notes.map((note, index) => (
+                    {item.notes.slice(0, 3).map((notesItem, index) => (
                       <View key={index} className="flex flex-row gap-x-2">
                         <Image
                           style={{
@@ -101,16 +105,15 @@ export default function CardsBig({ data }: CardsProps) {
                             height: 55,
                             borderRadius: 10,
                           }}
-                          source={{
-                            uri: item.notes[index].thumbnailURL,
-                          }}
+                          source={require("../../assets/images/Shared/imgPlaceholder.png")}
                         />
+
                         <View className="flex flex-col gap-y-1 w-4/5">
                           <TextView className="font-semibold text-md">
-                            {item.notes[index].title}
+                            {notesItem.notesTitle}
                           </TextView>
                           <TextView className="font-light text-sm">
-                            Date Added: {item.notes[index].dateAdded}
+                            Date Added: {notesItem.dateAdded}
                           </TextView>
                         </View>
                       </View>

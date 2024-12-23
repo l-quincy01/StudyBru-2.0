@@ -42,7 +42,7 @@ export default function HomeScreen() {
 
       <Layout>
         <>
-          <ThemedView className="mt-8">
+          <ThemedView className="pb-32">
             {/* <CardListLayout /> */}
             <CardBigLayout />
           </ThemedView>

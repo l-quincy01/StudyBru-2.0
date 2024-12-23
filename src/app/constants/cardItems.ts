@@ -18,9 +18,50 @@ export const cardItems = [
     dateCreated: "01-07-2024",
   },
 ];
-export const cardBigItems = [
+
+/*
+
+const sample_arr: {
+data1: <data type>;
+data2: <data type>;
+data3: <data type>;
+}[ ] = [
+{ data1: "value1", data2: "value2", data3: "value3" },
+{ data1: "value12", data2: "value22", data3: "value32" },
+{ data1: "value13", data2: "value23", data3: "value33" },
+];
+*/
+
+export const moduleSets: {
+  setTitle: string;
+  notes: { notesTitle: string; thumbnailURL: string; dateAdded: string }[];
+}[] = [
   {
-    subjectModuleTitle: "Logic Gate",
+    setTitle: "Electronics",
+    notes: [
+      {
+        notesTitle: "Algebra Basics",
+        thumbnailURL: "https://example.com/algebra-thumbnail.jpg",
+        dateAdded: "2024-12-20",
+      },
+    ],
+  },
+];
+
+export const modules: {
+  subjectModuleTitle: string;
+  moduleSet: any[];
+}[] = [
+  {
+    subjectModuleTitle: "string",
+    moduleSet: moduleSets,
+  },
+];
+
+/*
+
+ {
+    subjectModuleTitle: "Electrical Eng",
     setTitle: ["Basics", "Advanced Topics"],
     notes: [
       {
@@ -35,6 +76,7 @@ export const cardBigItems = [
       },
     ],
   },
+
   {
     subjectModuleTitle: "Electric Circuits",
     setTitle: ["Beginner", "Intermediate"],
@@ -67,4 +109,4 @@ export const cardBigItems = [
       },
     ],
   },
-];
+*/
