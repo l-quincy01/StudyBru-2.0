@@ -33,18 +33,7 @@ export default function AppNavigator() {
               options={({ navigation }) => ({
                 presentation: "modal",
                 title: "New Set",
-                headerStyle: {
-                  backgroundColor: "transparent",
-                },
-                headerTransparent: true,
-                headerRight: () => (
-                  <TouchableOpacity
-                    className="p-4"
-                    onPress={() => navigation.goBack()}
-                  >
-                    <Ionicons name="close-outline" size={24} color="black" />
-                  </TouchableOpacity>
-                ),
+                headerShown: false,
               })}
             />
           </>

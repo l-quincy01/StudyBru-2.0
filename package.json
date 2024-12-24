@@ -66,7 +66,9 @@
     "tailwindcss": "^3.4.15",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.3.3",
-    "zeego": "^2.0.4"
+    "zeego": "^2.0.4",
+    "expo-document-picker": "~13.0.1",
+    "expo-camera": "~16.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
