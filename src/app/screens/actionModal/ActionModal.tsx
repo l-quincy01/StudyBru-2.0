@@ -13,14 +13,10 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Octicons from "@expo/vector-icons/Octicons";
 import * as DocumentPicker from "expo-document-picker";
-import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 
 export default function ActionModal() {
   const scheme = useColorScheme();
   const navigation = useNavigation();
-  const [showCamera, setShowCamera] = useState<boolean>(false);
-  //   const [facing, setFacing] = useState<CameraType>('back');
-  const [permission, requestPermission] = useCameraPermissions();
 
   const pickDocument = async () => {
     console.log("Document picker opened");
@@ -34,118 +30,93 @@ export default function ActionModal() {
     }
   };
 
-  if (!permission!.granted && showCamera) {
-    // Camera permissions are not granted yet.
-    return (
-      <View style={styles.container}>
-        <Text style={styles.message}>
-          We need your permission to show the camera
-        </Text>
-        <TouchableOpacity onPress={requestPermission}>
-          <TextView>Grant permission</TextView>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
   return (
     <>
       <ThemedView className=" p-5 flex-1">
-        {!showCamera ? (
-          <>
-            <ThemedView className="flex flex-row justify-center items-center w-full">
-              <TextView className="text-2xl font-semibold">New Set</TextView>
-              <TouchableOpacity
-                className="p-4"
-                onPress={() => navigation.goBack()}
-              >
-                <View className="right-2 ">
-                  <Ionicons
-                    name="close-outline"
-                    size={24}
-                    color={scheme === "dark" ? "white" : "black"}
-                  />
-                </View>
-              </TouchableOpacity>
-            </ThemedView>
-
-            <ThemedView className="flex flex-col gap-y-4 mt-12">
-              <TouchableOpacity
-                className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
-                  scheme === "dark" ? "border-white" : "border-black"
-                }`}
-                onPress={pickDocument}
-              >
+        <>
+          <ThemedView className="flex flex-row justify-center items-center w-full">
+            <TextView className="text-2xl font-semibold">New Set</TextView>
+            <TouchableOpacity
+              className="p-4"
+              onPress={() => navigation.goBack()}
+            >
+              <View className="right-2 ">
                 <Ionicons
-                  name="document-text-outline"
+                  name="close-outline"
                   size={24}
                   color={scheme === "dark" ? "white" : "black"}
                 />
-                <TextView>Upload Document</TextView>
-              </TouchableOpacity>
-              <TouchableOpacity
-                className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
-                  scheme === "dark" ? "border-white" : "border-black"
-                }`}
-              >
-                <Octicons
-                  name="paste"
-                  size={24}
-                  color={scheme === "dark" ? "white" : "black"}
-                />
+              </View>
+            </TouchableOpacity>
+          </ThemedView>
 
-                <TextView>Paste Text</TextView>
-              </TouchableOpacity>
-              <TouchableOpacity
-                className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
-                  scheme === "dark" ? "border-white" : "border-black"
-                }`}
-                onPress={() => setShowCamera(true)}
-              >
-                <Ionicons
-                  name="camera-outline"
-                  size={24}
-                  color={scheme === "dark" ? "white" : "black"}
-                />
+          <ThemedView className="flex flex-col gap-y-4 mt-12">
+            <TouchableOpacity
+              className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
+                scheme === "dark" ? "border-white" : "border-black"
+              }`}
+              onPress={pickDocument}
+            >
+              <Ionicons
+                name="document-text-outline"
+                size={24}
+                color={scheme === "dark" ? "white" : "black"}
+              />
+              <TextView>Upload Document</TextView>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
+                scheme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              <Octicons
+                name="paste"
+                size={24}
+                color={scheme === "dark" ? "white" : "black"}
+              />
 
-                <TextView>Scan Document</TextView>
-              </TouchableOpacity>
+              <TextView>Paste Text</TextView>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
+                scheme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              <Ionicons
+                name="camera-outline"
+                size={24}
+                color={scheme === "dark" ? "white" : "black"}
+              />
 
-              <TouchableOpacity
-                className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
-                  scheme === "dark" ? "border-white" : "border-black"
-                }`}
-              >
-                <MaterialIcons
-                  name="multitrack-audio"
-                  size={24}
-                  color={scheme === "dark" ? "white" : "black"}
-                />
-                <TextView>Upload Audio</TextView>
-              </TouchableOpacity>
-              <TouchableOpacity
-                className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
-                  scheme === "dark" ? "border-white" : "border-black"
-                }`}
-              >
-                <Ionicons
-                  name="videocam-outline"
-                  size={24}
-                  color={scheme === "dark" ? "white" : "black"}
-                />
-                <TextView>Upload Video</TextView>
-              </TouchableOpacity>
-            </ThemedView>
-          </>
-        ) : (
-          <>
-            <View style={styles.container}>
-              <CameraView style={styles.camera} facing={facing}>
-                <View style={styles.buttonContainer}></View>
-              </CameraView>
-            </View>
-          </>
-        )}
+              <TextView>Scan Document</TextView>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
+                scheme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              <MaterialIcons
+                name="multitrack-audio"
+                size={24}
+                color={scheme === "dark" ? "white" : "black"}
+              />
+              <TextView>Upload Audio</TextView>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={` rounded-xl flex flex-row gap-x-2 border-hairline items-center justify-center py-8 px-6 ${
+                scheme === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              <Ionicons
+                name="videocam-outline"
+                size={24}
+                color={scheme === "dark" ? "white" : "black"}
+              />
+              <TextView>Upload Video</TextView>
+            </TouchableOpacity>
+          </ThemedView>
+        </>
       </ThemedView>
     </>
   );
