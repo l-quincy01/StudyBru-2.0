@@ -3,6 +3,8 @@
 # dependencies
 node_modules/
 
+doc_parsing_env/*
+
 # Expo
 .expo/
 dist/
@@ -28,6 +30,7 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+*.env
 
 # local env files
 .env*.local
